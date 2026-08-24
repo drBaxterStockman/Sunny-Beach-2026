@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#58c7f2">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Sunny Beach 2026">
+<meta name="mobile-web-app-capable" content="yes">
+<title>Sunny Beach 2026 – Plan puta</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+:root {
+  --navy:#08285d;
+  --blue:#258bd3;
+  --orange:#f79a1e;
+  --green:#28aa70;
+  --purple:#815ec5;
+  --text:#142033;
+  --muted:#667384;
+  --cream:#fff8e7;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  color:var(--text);
+  background:#eef9fe;
+}
+.app {
+  max-width:860px;
+  margin:0 auto;
+  padding:8px 8px 28px;
+}
+.jumpbar {
+  position:sticky;
+  top:0;
+  z-index:30;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  padding:7px 0 10px;
+  background:rgba(238,249,254,.96);
+}
+.jump {
+  min-height:48px;
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  font-weight:900;
+  font-size:15px;
+  border:2px solid #fff;
+  box-shadow:0 4px 14px rgba(15,54,85,.12);
+}
+.jump.plan {
+  color:#fff;
+  background:linear-gradient(135deg,#158ad7,#65cdf5);
+}
+.jump.nav {
+  color:#523000;
+  background:linear-gradient(135deg,#ff9f1b,#ffc34a);
+}
+.anchor { scroll-margin-top:72px; }
+
+#plan {
+  counter-reset:done;
+}
+.plan-form {
+  margin:0;
+}
+.poster {
+  position:relative;
+  overflow:hidden;
+  border-radius:18px;
+  background:#fff;
+  border:2px solid #fff;
+  box-shadow:0 8px 24px rgba(15,54,85,.14);
+}
+.poster img {
+  display:block;
+  width:100%;
+  height:auto;
+}
+
+/* The real checkbox stays invisible; the label is the visible circle. */
+.state {
+  position:absolute;
+  width:1px;
+  height:1px;
+  opacity:0;
+  pointer-events:none;
+}
+.state:checked {
+  counter-increment:done;
+}
+.mark {
+  position:absolute;
+  right:12px;
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  border:3px solid rgba(255,255,255,.98);
+  background:rgba(255,255,255,.96);
+  box-shadow:0 5px 15px rgba(0,0,0,.20);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#bec8cf;
+  font-size:26px;
+  line-height:1;
+  font-weight:1000;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+.mark::after {
+  content:"";
+  position:absolute;
+  inset:-6px;
+  border-radius:50%;
+  border:2px dashed rgba(8,40,93,.16);
+}
+.state:checked + .mark {
+  color:#fff;
+  background:#29aa70;
+}
+.state:checked + .mark::after {
+  border-color:rgba(255,255,255,.75);
+}
+
+.m1 { top:18.2%; }
+.m2 { top:28.7%; }
+.m3 { top:39.2%; }
+.m4 { top:49.7%; }
+.m5 { top:60.2%; }
+.m6 { top:70.7%; }
+
+.status {
+  margin:13px 2px 0;
+  padding:14px 15px;
+  border-radius:18px;
+  background:#fff;
+  box-shadow:0 5px 17px rgba(15,54,85,.10);
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+.counter {
+  flex:0 0 58px;
+  height:58px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#eaf7ef;
+  border:3px solid #bce7cd;
+  color:#15794b;
+  font-size:18px;
+  font-weight:1000;
+}
+.counter::after {
+  content:counter(done) "/6";
+}
+.status-title {
+  font-weight:900;
+  color:var(--navy);
+  font-size:17px;
+}
+.status-note {
+  margin-top:3px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.35;
+}
+.reset {
+  display:block;
+  margin:12px auto 2px;
+  min-height:42px;
+  padding:0 14px;
+  border:0;
+  background:transparent;
+  color:#71808c;
+  text-decoration:underline;
+  font-size:14px;
+}
+
+.navigation {
+  margin-top:22px;
+}
+.nav-head {
+  border-radius:21px;
+  padding:18px;
+  color:#fff;
+  background:linear-gradient(135deg,#0d67b4,#47bfe9);
+  box-shadow:0 8px 24px rgba(15,54,85,.14);
+}
+.nav-head h2 {
+  margin:0 0 5px;
+  font-size:27px;
+}
+.nav-head p {
+  margin:0;
+  font-size:14px;
+  line-height:1.4;
+  opacity:.96;
+}
+.route-list {
+  display:grid;
+  gap:11px;
+  margin-top:12px;
+}
+.route-card {
+  border-radius:19px;
+  padding:14px;
+  background:#fff;
+  box-shadow:0 5px 17px rgba(15,54,85,.10);
+  border-left:6px solid var(--blue);
+}
+.route-card:nth-child(2) { border-left-color:var(--orange); }
+.route-card:nth-child(3) { border-left-color:var(--purple); }
+.route-card:nth-child(4) { border-left-color:var(--green); }
+.route-top {
+  display:flex;
+  align-items:center;
+  gap:11px;
+}
+.route-num {
+  flex:0 0 43px;
+  width:43px;
+  height:43px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  background:var(--blue);
+  font-size:20px;
+  font-weight:1000;
+}
+.route-card:nth-child(2) .route-num { background:var(--orange); }
+.route-card:nth-child(3) .route-num { background:var(--purple); }
+.route-card:nth-child(4) .route-num { background:var(--green); }
+.route-name {
+  color:var(--navy);
+  font-size:16px;
+  font-weight:900;
+  line-height:1.25;
+}
+.route-note {
+  margin-top:3px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.35;
+}
+.maps-btn {
+  margin-top:11px;
+  min-height:52px;
+  width:100%;
+  border-radius:15px;
+  padding:9px 12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  text-decoration:none;
+  color:#fff;
+  background:linear-gradient(135deg,#20a567,#49cb82);
+  box-shadow:0 5px 13px rgba(32,165,103,.22);
+  font-size:15px;
+  font-weight:1000;
+}
+.maps-btn::before {
+  content:"↗";
+  margin-right:7px;
+}
+.ios-note {
+  margin-top:13px;
+  padding:12px 13px;
+  border-radius:15px;
+  background:var(--cream);
+  color:#624b1b;
+  border:1px solid #efd79f;
+  font-size:12px;
+  line-height:1.45;
+}
+.back {
+  margin-top:13px;
+  display:flex;
+  justify-content:center;
+}
+.back a {
+  min-height:45px;
+  padding:0 17px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  background:#fff;
+  color:var(--navy);
+  font-size:14px;
+  font-weight:900;
+  box-shadow:0 4px 14px rgba(15,54,85,.09);
+}
+
+@media (min-width:600px) {
+  .mark {
+    right:18px;
+    width:54px;
+    height:54px;
+    font-size:34px;
+  }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <nav class="jumpbar" aria-label="Navigacija stranice">
+    <a class="jump plan" href="#plan">🗺️ Plan puta</a>
+    <a class="jump nav" href="#navigacija">🧭 Navigacija</a>
+  </nav>
+
+  <main>
+    <section id="plan" class="anchor">
+      <form class="plan-form">
+        <div class="poster">
+          <img src="plan-putovanja.png" alt="Plan puta do Sunny Beach-a">
+
+          <input class="state" id="c1" type="checkbox">
+          <label class="mark m1" for="c1" aria-label="Polazak iz Kragujevca">✓</label>
+
+          <input class="state" id="c2" type="checkbox">
+          <label class="mark m2" for="c2" aria-label="Gradina">✓</label>
+
+          <input class="state" id="c3" type="checkbox">
+          <label class="mark m3" for="c3" aria-label="ENERGY OIL Dragoman">✓</label>
+
+          <input class="state" id="c4" type="checkbox">
+          <label class="mark m4" for="c4" aria-label="Happy Bar and Grill Shell">✓</label>
+
+          <input class="state" id="c5" type="checkbox">
+          <label class="mark m5" for="c5" aria-label="Jumbo Burgas">✓</label>
+
+          <input class="state" id="c6" type="checkbox">
+          <label class="mark m6" for="c6" aria-label="Imperial Palace Hotel">✓</label>
+        </div>
+
+        <div class="status">
+          <div class="counter" aria-label="Broj završenih koraka"></div>
+          <div>
+            <div class="status-title">Napredak puta</div>
+          </div>
+        </div>
+
+        <button class="reset" type="reset">Resetuj sve štiklice</button>
+      </form>
+    </section>
+
+    <section id="navigacija" class="navigation anchor">
+      <div class="nav-head">
+        <h2>🧭 Navigacija</h2>
+      </div>
+
+      <div class="route-list">
+        
+<article class="route-card">
+  <div class="route-top">
+    <span class="route-num">1</span>
+    <div>
+      <div class="route-name">Kragujevac → ENERGY OIL Dragoman</div>
+      <div class="route-note">Prva deonica do pauze posle granice</div>
+    </div>
+  </div>
+  <a class="maps-btn" href="https://maps.app.goo.gl/JU2FUuMVoXenEaVi6?g_st=ic" rel="noopener noreferrer">
+    Otvori u Google Maps
+  </a>
+</article>
+
+
+<article class="route-card">
+  <div class="route-top">
+    <span class="route-num">2</span>
+    <div>
+      <div class="route-name">ENERGY OIL Dragoman → Happy Bar&Grill Shell</div>
+      <div class="route-note">Preko Sofije i dalje ka Plovdivu</div>
+    </div>
+  </div>
+  <a class="maps-btn" href="https://maps.app.goo.gl/NEdSx4ANLmGP89Dw5?g_st=ic" rel="noopener noreferrer">
+    Otvori u Google Maps
+  </a>
+</article>
+
+
+<article class="route-card">
+  <div class="route-top">
+    <span class="route-num">3</span>
+    <div>
+      <div class="route-name">Happy Bar&Grill Shell → Jumbo Burgas</div>
+      <div class="route-note">Autoputem Trakia ka Burgasu</div>
+    </div>
+  </div>
+  <a class="maps-btn" href="https://maps.app.goo.gl/mUq6KU4xwduRCE5m6?g_st=ic" rel="noopener noreferrer">
+    Otvori u Google Maps
+  </a>
+</article>
+
+
+<article class="route-card">
+  <div class="route-top">
+    <span class="route-num">4</span>
+    <div>
+      <div class="route-name">Jumbo Burgas → Imperial Palace Hotel</div>
+      <div class="route-note">Poslednja deonica do hotela u Sunny Beach-u</div>
+    </div>
+  </div>
+  <a class="maps-btn" href="https://maps.app.goo.gl/rpmxPG7eQHbxA4p38?g_st=ic" rel="noopener noreferrer">
+    Otvori u Google Maps
+  </a>
+</article>
+
+      </div>
+<div class="back">
+        <a href="#plan">↑ Nazad na plan</a>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+/* Optional enhancement only: if JavaScript is allowed, remember checkbox state.
+   Nothing essential depends on this script. */
+(() => {
+  const boxes = Array.from(document.querySelectorAll(".state"));
+  const key = "sunnyBeach2026_v3";
+  try {
+    const saved = JSON.parse(localStorage.getItem(key) || "{}");
+    boxes.forEach(b => {
+      if (saved[b.id]) b.checked = true;
+      b.addEventListener("change", () => {
+        const s = {};
+        boxes.forEach(x => s[x.id] = x.checked);
+        localStorage.setItem(key, JSON.stringify(s));
+      });
+    });
+    document.querySelector(".plan-form").addEventListener("reset", () => {
+      localStorage.removeItem(key);
+    });
+  } catch(e) {}
+})();
+</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  });
+}
+</script>
+
+</body>
+</html>
