@@ -40,7 +40,7 @@ body {
   top:0;
   z-index:30;
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:repeat(3,1fr);
   gap:8px;
   padding:7px 0 10px;
   background:rgba(238,249,254,.96);
@@ -64,6 +64,10 @@ body {
 .jump.nav {
   color:#523000;
   background:linear-gradient(135deg,#ff9f1b,#ffc34a);
+}
+.jump.hotel {
+  color:#fff;
+  background:linear-gradient(135deg,#7c55c7,#b075db);
 }
 .anchor { scroll-margin-top:72px; }
 
@@ -307,6 +311,67 @@ body {
   box-shadow:0 4px 14px rgba(15,54,85,.09);
 }
 
+
+.hotel-section { margin-top:22px; }
+.hotel-head {
+  border-radius:21px; padding:18px; color:#fff;
+  background:linear-gradient(135deg,#6947b5,#a56bd4);
+  box-shadow:0 8px 24px rgba(15,54,85,.14);
+}
+.hotel-head h2 { margin:0; font-size:27px; }
+.hotel-group { margin-top:14px; }
+.hotel-group-title {
+  display:flex; align-items:center; gap:8px; margin:0 4px 9px;
+  color:var(--navy); font-size:20px; font-weight:1000;
+}
+.hotel-card {
+  margin-bottom:11px; padding:15px; border-radius:19px;
+  background:#fff; box-shadow:0 5px 17px rgba(15,54,85,.10);
+}
+.hotel-card.restaurant { border-left:6px solid #e59832; }
+.hotel-card.bar { border-left:6px solid #2d9bc4; }
+.hotel-card.plus { border-left:6px solid #8b5fc8; }
+.hotel-card.snack { border-left:6px solid #2aaa70; }
+.hotel-card h3 { margin:0; color:var(--navy); font-size:17px; line-height:1.25; }
+.hotel-sub { margin-top:5px; color:var(--muted); font-size:13px; line-height:1.4; }
+.schedule { display:grid; gap:8px; margin-top:12px; }
+.schedule-row {
+  display:grid; grid-template-columns:112px minmax(0,1fr); gap:10px;
+  align-items:start; padding:9px 10px; border-radius:13px; background:#f7fafc;
+}
+.time { color:var(--navy); font-weight:1000; font-size:14px; white-space:nowrap; }
+.meal { font-weight:900; color:#2b3745; }
+.detail { margin-top:2px; color:var(--muted); font-size:12px; line-height:1.35; }
+.badges { display:flex; flex-wrap:wrap; gap:7px; margin-top:9px; }
+.badge {
+  display:inline-flex; align-items:center; min-height:28px; padding:4px 9px;
+  border-radius:999px; font-size:12px; font-weight:900;
+  background:#edf5fa; color:#266681;
+}
+.badge.plus { background:#f1e9fa; color:#7143a3; }
+.badge.food { background:#fff1dc; color:#9a5e10; }
+.note-card {
+  margin-top:10px; padding:11px 12px; border-radius:14px;
+  background:#fff8e7; border:1px solid #efd79f; color:#664d18;
+  font-size:12px; line-height:1.45;
+}
+.bar-list { display:grid; gap:8px; margin-top:11px; }
+.bar-row {
+  display:flex; justify-content:space-between; gap:12px;
+  padding:9px 10px; border-radius:13px; background:#f7fafc;
+}
+.bar-name { min-width:0; font-weight:900; color:#2b3745; }
+.bar-hours { flex:0 0 auto; font-weight:1000; color:var(--navy); white-space:nowrap; }
+.last-order {
+  display:block; margin-top:2px; color:var(--muted);
+  font-size:11px; font-weight:700;
+}
+@media (max-width:430px) {
+  .jump { font-size:13px; padding:0 4px; }
+  .schedule-row { grid-template-columns:98px minmax(0,1fr); gap:8px; }
+  .bar-row { align-items:flex-start; }
+}
+
 @media (min-width:600px) {
   .mark {
     right:18px;
@@ -320,8 +385,9 @@ body {
 <body>
 <div class="app">
   <nav class="jumpbar" aria-label="Navigacija stranice">
-    <a class="jump plan" href="#plan">🗺️ Plan puta</a>
+    <a class="jump plan" href="#plan">🗺️ Plan</a>
     <a class="jump nav" href="#navigacija">🧭 Navigacija</a>
+    <a class="jump hotel" href="#hotel">🍽️ Hotel</a>
   </nav>
 
   <main>
@@ -427,6 +493,97 @@ body {
         <a href="#plan">↑ Nazad na plan</a>
       </div>
     </section>
+
+    <section id="hotel" class="hotel-section anchor">
+      <div class="hotel-head"><h2>🍽️ Restorani & barovi</h2></div>
+
+      <div class="hotel-group">
+        <div class="hotel-group-title">🍴 Restorani</div>
+
+        <article class="hotel-card restaurant">
+          <h3>GAIUS JULIUS CAESAR</h3>
+          <div class="hotel-sub">Glavni restoran sa otvorenom terasom • buffet • show cooking</div>
+          <div class="schedule">
+            <div class="schedule-row">
+              <div class="time">07:30–10:00</div>
+              <div><div class="meal">Doručak</div><div class="detail">Topli napici, schwarz kafa, bezalkoholna pića, voda i sokovi. Kafa se služi preko konobara na zahtev.</div></div>
+            </div>
+            <div class="schedule-row">
+              <div class="time">12:30–14:30</div>
+              <div><div class="meal">Ručak</div><div class="detail">Voda, sokovi, bezalkoholna pića, točeno pivo i vino.</div></div>
+            </div>
+            <div class="schedule-row">
+              <div class="time">18:00–21:00</div>
+              <div><div class="meal">Večera</div><div class="detail">Voda, sokovi, bezalkoholna pića, točeno pivo i vino.</div></div>
+            </div>
+          </div>
+          <div class="badges">
+            <span class="badge food">Tematske večere</span>
+            <span class="badge">Otvorena terasa</span>
+          </div>
+          <div class="note-card">Za ručak i večeru važi <strong>sporty-elegant</strong> dress code.</div>
+        </article>
+
+        <article class="hotel-card restaurant">
+          <h3>MARC AURELIUS</h3>
+          <div class="hotel-sub">Restaurant & Snack • buffet • show cooking</div>
+          <div class="schedule">
+            <div class="schedule-row">
+              <div class="time">07:30–10:00</div>
+              <div><div class="meal">Doručak</div><div class="detail">Topli napici, schwarz kafa, bezalkoholna pića, voda i sokovi. Kafa se služi preko konobara na zahtev.</div></div>
+            </div>
+            <div class="schedule-row">
+              <div class="time">12:30–14:30</div>
+              <div><div class="meal">Ručak</div><div class="detail">Voda, sokovi, bezalkoholna pića, točeno pivo i vino.</div></div>
+            </div>
+            <div class="schedule-row">
+              <div class="time">18:00–20:00</div>
+              <div><div class="meal">Večera</div><div class="detail">Voda, sokovi, bezalkoholna pića, točeno pivo i vino.</div></div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="hotel-group">
+        <div class="hotel-group-title">🍹 Barovi</div>
+
+        <article class="hotel-card bar">
+          <h3>All Inclusive barovi</h3>
+          <div class="bar-list">
+            <div class="bar-row"><div class="bar-name">Lobby Bar „CLEOPATRA”</div><div class="bar-hours">10:00–17:00<span class="last-order">poslednja porudžbina 16:45</span></div></div>
+            <div class="bar-row"><div class="bar-name">Pool Bar</div><div class="bar-hours">10:00–22:00<span class="last-order">poslednja porudžbina 21:45</span></div></div>
+            <div class="bar-row"><div class="bar-name">Bar CALIGULA</div><div class="bar-hours">17:00–23:00<span class="last-order">poslednja porudžbina 22:45</span></div></div>
+          </div>
+          <div class="hotel-sub">Bugarska točena alkoholna pića, kokteli, bezalkoholna i gazirana pića, topli i hladni napici.</div>
+        </article>
+
+        <article class="hotel-card plus">
+          <h3>All Inclusive+ barovi</h3>
+          <div class="badges"><span class="badge plus">AI+ uključeno</span></div>
+          <div class="bar-list">
+            <div class="bar-row"><div class="bar-name">Bar Mezzanine</div><div class="bar-hours">15:00–21:00</div></div>
+            <div class="bar-row"><div class="bar-name">Beach Bar</div><div class="bar-hours">09:00–17:00</div></div>
+          </div>
+          <div class="hotel-sub">Mezzanine: odabrana bugarska i uvozna alkoholna pića, gazirana pića, frappe, kokteli, bezalkoholna pića i topli/hladni napici.</div>
+          <div class="note-card">Alkoholna pića u barovima služe se u porcijama od <strong>50 ml</strong>.</div>
+        </article>
+      </div>
+
+      <div class="hotel-group">
+        <div class="hotel-group-title">🍔 Snack bar</div>
+        <article class="hotel-card snack">
+          <h3>Hrana & piće</h3>
+          <div class="schedule">
+            <div class="schedule-row"><div class="time">10:00–12:00</div><div><div class="meal">Snacks</div></div></div>
+            <div class="schedule-row"><div class="time">15:00–17:00</div><div><div class="meal">Snacks</div></div></div>
+          </div>
+          <div class="hotel-sub">Sendviči, burgeri, sveže voće, sladoled, topli i hladni napici.</div>
+        </article>
+      </div>
+
+      <div class="back"><a href="#plan">↑ Nazad na plan</a></div>
+    </section>
+
   </main>
 </div>
 
