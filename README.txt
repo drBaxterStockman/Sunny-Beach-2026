@@ -13,3 +13,4 @@ Kada folder postaviš na HTTPS static hosting, otvori URL u Safari-ju:
 Share → Add to Home Screen → Open as Web App → Add.
 
 Anđela samo otvara isti URL i radi isto na svom iPhone-u.
+v2
