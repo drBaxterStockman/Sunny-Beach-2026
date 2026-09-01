@@ -40,7 +40,7 @@ body {
   top:0;
   z-index:30;
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(4,1fr);
   gap:8px;
   padding:7px 0 10px;
   background:rgba(238,249,254,.96);
@@ -68,6 +68,10 @@ body {
 .jump.hotel {
   color:#fff;
   background:linear-gradient(135deg,#7c55c7,#b075db);
+}
+.jump.vignette {
+  color:#fff;
+  background:linear-gradient(135deg,#1e8f4f,#50bd72);
 }
 .anchor { scroll-margin-top:72px; }
 
@@ -312,6 +316,87 @@ body {
 }
 
 
+.route-group-title {
+  margin:17px 4px 8px;
+  color:var(--navy);
+  font-size:20px;
+  font-weight:1000;
+}
+.route-group-note {
+  margin:-3px 4px 8px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.4;
+}
+.return-list .route-card { border-left-color:#2aaa70; }
+.return-list .route-card:nth-child(2) { border-left-color:#815ec5; }
+.return-list .route-card:nth-child(3) { border-left-color:#258bd3; }
+.return-list .route-card .route-num { background:#2aaa70; }
+.return-list .route-card:nth-child(2) .route-num { background:#815ec5; }
+.return-list .route-card:nth-child(3) .route-num { background:#258bd3; }
+
+.vignette-section { margin-top:22px; }
+.vignette-head {
+  border-radius:21px;
+  padding:18px;
+  color:#fff;
+  background:linear-gradient(135deg,#157f43,#4fbd70);
+  box-shadow:0 8px 24px rgba(15,54,85,.14);
+}
+.vignette-head h2 { margin:0 0 4px; font-size:27px; }
+.vignette-head p { margin:0; font-size:13px; line-height:1.4; opacity:.96; }
+.vignette-card {
+  margin-top:12px;
+  padding:16px;
+  border-radius:19px;
+  background:#fff;
+  box-shadow:0 5px 17px rgba(15,54,85,.10);
+  border-left:6px solid #2aaa70;
+}
+.vignette-status {
+  font-size:18px;
+  font-weight:1000;
+  color:#15794b;
+}
+.vignette-meta {
+  display:grid;
+  gap:8px;
+  margin-top:12px;
+}
+.vignette-row {
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  padding:9px 10px;
+  border-radius:13px;
+  background:#f7fafc;
+}
+.vignette-label { color:var(--muted); font-size:12px; font-weight:800; }
+.vignette-value { color:var(--navy); font-size:13px; font-weight:1000; text-align:right; }
+.vignette-btn {
+  margin-top:14px;
+  min-height:58px;
+  width:100%;
+  border-radius:16px;
+  padding:10px 14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  text-decoration:none;
+  color:#fff;
+  background:linear-gradient(135deg,#17864a,#48bd70);
+  box-shadow:0 6px 15px rgba(23,134,74,.24);
+  font-size:16px;
+  font-weight:1000;
+}
+.vignette-note {
+  margin-top:10px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.45;
+}
+
 .hotel-section { margin-top:22px; }
 .hotel-head {
   border-radius:21px; padding:18px; color:#fff;
@@ -367,7 +452,7 @@ body {
   font-size:11px; font-weight:700;
 }
 @media (max-width:430px) {
-  .jump { font-size:13px; padding:0 4px; }
+  .jump { font-size:11.5px; padding:0 3px; }
   .schedule-row { grid-template-columns:98px minmax(0,1fr); gap:8px; }
   .bar-row { align-items:flex-start; }
 }
@@ -388,6 +473,7 @@ body {
     <a class="jump plan" href="#plan">🗺️ Plan</a>
     <a class="jump nav" href="#navigacija">🧭 Navigacija</a>
     <a class="jump hotel" href="#hotel">🍽️ Hotel</a>
+    <a class="jump vignette" href="#vinjeta">🇧🇬 Vinjeta</a>
   </nav>
 
   <main>
@@ -431,6 +517,7 @@ body {
         <h2>🧭 Navigacija</h2>
       </div>
 
+      <div class="route-group-title">☀️ Put za Bugarsku</div>
       <div class="route-list">
         
 <article class="route-card">
@@ -489,6 +576,52 @@ body {
 </article>
 
       </div>
+
+      <div class="route-group-title">🏠 Povratak za Kragujevac</div>
+      <div class="route-group-note">Tri odvojene ture za lakše pokretanje navigacije tokom povratka.</div>
+      <div class="route-list return-list">
+
+        <article class="route-card">
+          <div class="route-top">
+            <span class="route-num">1</span>
+            <div>
+              <div class="route-name">Imperial Palace → pauza kod Plovdiva</div>
+              <div class="route-note">Prva deonica povratka</div>
+            </div>
+          </div>
+          <a class="maps-btn" href="https://maps.app.goo.gl/uz2E8ARGLiCmfuHt8?g_st=ic" rel="noopener noreferrer">
+            Otvori u Google Maps
+          </a>
+        </article>
+
+        <article class="route-card">
+          <div class="route-top">
+            <span class="route-num">2</span>
+            <div>
+              <div class="route-name">Pauza kod Plovdiva → ENERGY OIL Dragoman</div>
+              <div class="route-note">Druga deonica ka Sofiji i Dragomanu</div>
+            </div>
+          </div>
+          <a class="maps-btn" href="https://maps.app.goo.gl/2mHzKrc7Hf3axXxs6?g_st=ic" rel="noopener noreferrer">
+            Otvori u Google Maps
+          </a>
+        </article>
+
+        <article class="route-card">
+          <div class="route-top">
+            <span class="route-num">3</span>
+            <div>
+              <div class="route-name">ENERGY OIL Dragoman → Kragujevac</div>
+              <div class="route-note">Poslednja deonica preko granice do kuće</div>
+            </div>
+          </div>
+          <a class="maps-btn" href="https://maps.app.goo.gl/TtrBMb7orrudzroJ9?g_st=ic" rel="noopener noreferrer">
+            Otvori u Google Maps
+          </a>
+        </article>
+
+      </div>
+
 <div class="back">
         <a href="#plan">↑ Nazad na plan</a>
       </div>
@@ -580,6 +713,36 @@ body {
           <div class="hotel-sub">Sendviči, burgeri, sveže voće, sladoled, topli i hladni napici.</div>
         </article>
       </div>
+
+      <div class="back"><a href="#plan">↑ Nazad na plan</a></div>
+    </section>
+
+    <section id="vinjeta" class="vignette-section anchor">
+      <div class="vignette-head">
+        <h2>🇧🇬 E-vinjeta</h2>
+        <p>Brz pristup originalnoj BGTOLL potvrdi ako je zatraže tokom puta.</p>
+      </div>
+
+      <article class="vignette-card">
+        <div class="vignette-status">✅ Vinjeta važeća</div>
+        <div class="vignette-meta">
+          <div class="vignette-row">
+            <div class="vignette-label">Registracija</div>
+            <div class="vignette-value">KG331CP • RS</div>
+          </div>
+          <div class="vignette-row">
+            <div class="vignette-label">Važi</div>
+            <div class="vignette-value">21.08.2026 20:44<br>do 20.09.2026 23:59</div>
+          </div>
+          <div class="vignette-row">
+            <div class="vignette-label">Kategorija</div>
+            <div class="vignette-value">Vozilo ≤ 3,5 t</div>
+          </div>
+        </div>
+
+        <a class="vignette-btn" href="./vinjeta.pdf" target="_blank" rel="noopener noreferrer">📄 Otvori originalnu vinjetu</a>
+        <div class="vignette-note">PDF potvrda je dodata u aplikaciju i service worker je čuva za offline pristup nakon što se nova verzija jednom učita.</div>
+      </article>
 
       <div class="back"><a href="#plan">↑ Nazad na plan</a></div>
     </section>

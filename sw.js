@@ -1,4 +1,4 @@
-const CACHE='sunny-beach-2026-v2';
+const CACHE='sunny-beach-2026-v3';
 const ASSETS=[
   './',
   './index.html',
@@ -6,7 +6,8 @@ const ASSETS=[
   './apple-touch-icon.png',
   './icon-192.png',
   './icon-512.png',
-  './manifest.webmanifest'
+  './manifest.webmanifest',
+  './vinjeta.pdf'
 ];
 
 self.addEventListener('install', event => {
